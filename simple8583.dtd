@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT simple8583-config (header+, package+ ) >
+
+
+<!ELEMENT header ( field+ ) >
+
+<!ELEMENT package ( field+ ) >
+<!ATTLIST package mti NMTOKEN #REQUIRED >
+
+<!ELEMENT field ( #PCDATA ) >
+<!ATTLIST field id NMTOKEN #REQUIRED >
+<!ATTLIST field length NMTOKEN #IMPLIED >
+<!ATTLIST field type ( BINARY | NUMERIC | CHAR | LLVAR | LLLVAR | LLVAR_NUMERIC) #REQUIRED >
