@@ -7,9 +7,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Description: IsoContainer
- * Author: joey
- * Update: joey(2014-07-10 15:49)
+ * <p>组织包报文格式类.</p>
+ *
+ * @author Magic Joey
+ * @version IsoContainer.java 1.0 Created@2014-07-10 15:49 $
  */
 @XmlRootElement(name="simple8583-config")
 @XmlAccessorType(XmlAccessType.FIELD)

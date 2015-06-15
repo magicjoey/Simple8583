@@ -2,6 +2,13 @@ package com.simple8583.util.encrypt;
 
 import java.io.UnsupportedEncodingException;
 
+
+/**
+ * <p>三倍长DES</p>
+ *
+ * @author Magic Joey
+ * @version MacUtil.java 1.0 @2014-06-09 17:57$
+ */
 public class TripleDES extends DES {
 
 	// 双倍长计算密钥长度

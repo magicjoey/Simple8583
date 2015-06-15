@@ -1,10 +1,10 @@
 package com.simple8583.model;
 
 /**
- * Description: IsoType
- * Author: joey
- * Update: joey(2014-07- 13:59)
- * 定义了8583支持的数据类型
+ * <p>报文域类型,该类待修改，以使本框架更通用.</p>
+ *  TODO
+ * @author Magic Joey
+ * @version Simple8583Test.java 1.0 @2014-07-10 13:59 $
  */
 public enum IsoType {
 

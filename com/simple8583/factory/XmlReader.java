@@ -16,9 +16,10 @@ import com.simple8583.model.IsoHeaderList;
 import com.simple8583.model.IsoPackage;
 
 /**
- * Description: XmlReader 本方法的实现是通过JaxB来实现的，比较方便得将Xml文件与Object文件做相互转换
- * Author:joey Update: joey(2014-07-12 13:28)
+ * <p>XmlReader 本方法的实现是通过JaxB来实现的，比较方便得将Xml文件与Object文件做相互转换.</p>
  *
+ * @author Magic Joey
+ * @version XmlReader.java 1.0 Created@2014-07-12 13:28 $
  */
 public class XmlReader {
 

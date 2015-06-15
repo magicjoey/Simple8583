@@ -1,15 +1,12 @@
 package com.simple8583.util;
 
 /**
- * Description: TraceGenerator
- * Author: joey
- * Update: joey(2014-06-09 17:57)
- * 本类用于标识终端交易流水号，每次会生成一个1~999999之间的字符串
- * 
+ * <p>本类用于标识终端交易流水号，每次会生成一个1~999999之间的字符串</p>
+ * <p>使用方法TraceGenerator.getInstance().nextTrace();</p>
+ *
+ * @author Magic Joey
+ * @version TraceGenerator.java 1.0 @2014-06-09 17:57$
  */
-
-//TraceGenerator.getInstance().nextTrace();
-
 public class TraceGenerator {
 
     private static  TraceGenerator tg;

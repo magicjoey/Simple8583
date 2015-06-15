@@ -1,6 +1,12 @@
 package com.simple8583.client;
 
 
+/**
+ * <p>发送客户端.</p>
+ *
+ * @author Magic Joey
+ * @version AbstractClient.java 1.0 Created@2014-07-10 10:43 $
+ */
 public class SimpleClient extends AbstractClient{
 	
 	//构造方法

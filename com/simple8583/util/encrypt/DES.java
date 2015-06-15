@@ -2,6 +2,12 @@ package com.simple8583.util.encrypt;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * <p>DES加密类</p>
+ *
+ * @author Magic Joey
+ * @version DES.java 1.0 @2014-06-09 17:57$
+ */
 public class DES {
 	/***************************** 压缩替换S-Box�? **************************************************/
 	protected static  final int[][] s1 = {

@@ -10,16 +10,21 @@ import com.simple8583.factory.XmlReader;
 import com.simple8583.model.IsoPackage;
 import com.simple8583.util.EncodeUtil;
 
+/**
+ * <p>发送客户端抽象类.</p>
+ *
+ * @author Magic Joey
+ * @version AbstractClient.java 1.0 Created@2014-07-10 10:43 $
+ */
 public abstract class AbstractClient {
-	protected int timeout = 8000;
+    //默认18s超时
+	protected int timeout = 18000;
+    //Ip地址
 	protected String ip;
+    //端口号
 	protected int port;
-
+    //加密串，用于MD5或者DES加密
 	protected String macKey;
-
-	public void setMacKey(String macKey) {
-		this.macKey = macKey;
-	}
 
 	public AbstractClient(String ip, int port){
 		this.ip = ip;
@@ -33,11 +38,11 @@ public abstract class AbstractClient {
 	}
 
 	//发送接受报文的方法
-	public Map<String, String> client(Map<String, String> dataMap,
+	public Map<String, String> sendToBank(Map<String, String> dataMap,
 			XmlReader xmlReader) throws Exception {
 		//单例
 		IsoMsgFactory factory = IsoMsgFactory.getInstance();
-		factory.setBocMac(macKey);
+		factory.setMacKey(macKey);
 		String mti = dataMap.get("mti");
 		IsoPackage pack = xmlReader.getIsoConfig().get(mti);
 		byte[] buf = null;
@@ -48,7 +53,7 @@ public abstract class AbstractClient {
 			InetSocketAddress address = new InetSocketAddress(inetAddress, port);
 			try {
 				// 发送的报文
-				System.out.println("发送报文：" + EncodeUtil.hex(sendData));
+//				System.out.println("发送报文：" + EncodeUtil.hex(sendData));
 				socket.setReuseAddress(true);
 				socket.connect(address);
 				socket.setSoTimeout(this.timeout);
@@ -69,7 +74,7 @@ public abstract class AbstractClient {
 					}
 				}
 				
-				System.out.println(EncodeUtil.hex(buf));
+//				System.out.println(EncodeUtil.hex(buf));
 			} finally {
 				if (socket != null) {
 					try {
@@ -91,5 +96,10 @@ public abstract class AbstractClient {
 	}
 	
 	protected abstract int computeLength(byte[] lenBts);
+
+
+    public void setMacKey(String macKey) {
+        this.macKey = macKey;
+    }
 
 }

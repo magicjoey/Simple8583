@@ -1,24 +1,21 @@
 package com.simple8583.util;
 
-
 /**
- * Description: EncodeUtil
- * Author: joey
- * Update: joey(2014-07-10 09:51)
+ * <p>编码转换工具类.如:BCD和HEX</p>
+ *
+ * @author Magic Joey
+ * @version EncodeUtil.java 1.0 @2014-07-10 09:51 $
  */
-//BCD和HEX编码
 public class EncodeUtil {
 
     protected static final char[] HEX = new char[]{'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 
     protected static final char[] BINARY = new char[]{'0','1'};
-    
-    
-    public static void main(String[] args) {
-//		binary("0110000100111000000000000000000100000011110000000000000010000001");
-		binary("01001000");
-	}
-    
+
+    private EncodeUtil(){
+
+    }
+
     //传入参数为只有01的字符串
     public static byte[] binary(String binaryStr){
         //长度不是8倍数的话，无法知道在左边或右边补零，会引起歧义，导致结果不正确
@@ -47,12 +44,7 @@ public class EncodeUtil {
         System.arraycopy(returnBt,0,bts,offset,length);
         return hex(returnBt);
     }
-    
-//    public static String hex(byte[] bParam,int length){
-//    	byte[] target = new byte[length];
-//    	System.arraycopy(target, 0, bParam, 0, length);
-//    	return hex(bParam);
-//    }
+
 
     /**
      * 将byte数组转化为String类型的十六进制编码格式
@@ -123,15 +115,6 @@ public class EncodeUtil {
         if(code.length()<2*length){
         	code = addBlankLeft(code,2*length-code.length(),"0");
         }
-        
-//        //处理奇数位的值
-//        if(code.length()%2!=0){
-//            //将第一位数直接放入第一个字节中
-//            //@see @Character.digit
-//            //这里有个常识，(byte)int会转化为对应的int值字节，比如5会被转为0b00000101
-//            bt[0] = (byte)(Character.digit(code.charAt(0),16));
-//            point++;
-//        }
         
         //每两位合并为一个字节
         for(;point<code.length();point+=2){

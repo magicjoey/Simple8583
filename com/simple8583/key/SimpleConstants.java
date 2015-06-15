@@ -1,5 +1,12 @@
 package com.simple8583.key;
 
+
+/**
+ * <p>存储一些关键字.</p>
+ *
+ * @author Magic Joey
+ * @version SimpleConstants.java 1.0 Created@2014-07-12 13:28 $
+ */
 public interface SimpleConstants {
 
 	

@@ -15,23 +15,26 @@ import com.simple8583.model.IsoPackage;
 import com.simple8583.util.EncodeUtil;
 import com.simple8583.util.SimpleUtil;
 
+
+/**
+ * <p>报文组装抽象类.</p>
+ *
+ * @author Magic Joey
+ * @version AbstractIsoMsgFactory.java 1.0 Created@2014-07-10 10:43 $
+ */
 public abstract class AbstractIsoMsgFactory {
 
-	protected String bocMac;
-
-	public void setBocMac(String bocMac) {
-		this.bocMac = bocMac;
-	}
+	protected String macKey;
 
 	protected AbstractIsoMsgFactory() {
 
 	}
 	
 	// 入口和出口
-	public byte[] pack(Map<String, String> dataMap, IsoPackage pack)
-			throws IOException {
-
-		IsoPackage packClone = (IsoPackage) pack.clone();
+	public byte[] pack(Map<String, String> dataMap,final IsoPackage pack)
+            throws IOException, ClassNotFoundException {
+        //深度拷贝，对拷贝后的对象进行操作，
+		IsoPackage packClone = pack.deepClone();
 		
 		//判断BitMap的长度是否为128
 		boolean is128 = false;
@@ -60,13 +63,19 @@ public abstract class AbstractIsoMsgFactory {
 			bitMap = new BitMap(64);
 		}
 		byte[] bitMapByte = bitMap.addBits(dataFieldList);
-		// System.out.println(EncodeUtil.hex(bitMapByte));
 		//设置BitMap的值
 		packClone.getIsoField(SimpleConstants.BIT_MAP).setByteValue(bitMapByte);
 		//将数组合并
 		return merge(packClone);
 	}
 
+    /**
+     * 将返回信息拆成Map返回
+     * @param bts
+     * @param pack
+     * @return
+     * @throws Exception
+     */
 	public Map<String, String> unpack(byte[] bts, IsoPackage pack)
 			throws Exception {
 		if (pack == null || pack.size() == 0) {
@@ -75,7 +84,8 @@ public abstract class AbstractIsoMsgFactory {
 		Map<String, String> returnMap = new HashMap<String, String>();
 		// 起判断的作用
 		int offset = 0;
-		IsoPackage target = (IsoPackage) pack.clone();
+        //深度拷贝
+		IsoPackage target =  pack.deepClone();
 		// 获取到bitMap
 		boolean hasBitMap = false;
 		BitMap bitMap = null;
@@ -208,5 +218,8 @@ public abstract class AbstractIsoMsgFactory {
 	
 	//对返回的数据进行MAC校验
 	protected abstract void macValidate(IsoPackage isoPackage,Map<String,String> map);
-	
+
+    public void setMacKey(String macKey) {
+        this.macKey = macKey;
+    }
 }

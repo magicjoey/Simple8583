@@ -1,5 +1,6 @@
 package com.simple8583.model;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,8 +11,14 @@ import com.simple8583.key.SimpleConstants;
 import com.simple8583.util.EncodeUtil;
 import com.simple8583.util.SimpleUtil;
 
+/**
+ * <p>报文域详情.</p>
+ *
+ * @author Magic Joey
+ * @version IsoField.java 1.0 Created@2014-07-10 15:49 $
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class IsoField {
+public class IsoField implements Serializable{
 
 	@XmlAttribute(name = "id", required = true)
 	private String id;

@@ -5,7 +5,18 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>编码转换工具类.如:BCD和HEX</p>
+ *
+ * @author Magic Joey
+ * @version EncodeUtil.java 1.0 @2014-07-10 09:51 $
+ */
 public class SimpleUtil {
+
+    //不允许实例化
+    private SimpleUtil(){
+
+    }
 	
 	//判断字符串是否都是由数字组成
 	public static boolean isNumeric(String str){
@@ -46,10 +57,5 @@ public class SimpleUtil {
 		SimpleDateFormat format = new SimpleDateFormat("HHmmss");
 		return format.format(new Date());
 	}
-	
-//	public static void main(String[] args) {
-//		String a = EncodeUtil.hex(msgLength(255));
-//		System.out.println(a);
-//	}
-	
+
 }

@@ -10,12 +10,11 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Description: IsoHeader
- * Author: joey
- * Update: joey(2014-06-06 13:57)
+ * <p>报文域详情.</p>
+ *
+ * @author Magic Joey
+ * @version IsoContainer.java 1.0 Created@2014-06-06 13:57 $
  */
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="simple8583-config")
 public class IsoHeaderList  extends ArrayList<IsoField> implements Cloneable {

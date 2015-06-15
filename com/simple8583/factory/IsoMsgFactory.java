@@ -7,8 +7,12 @@ import com.simple8583.model.IsoPackage;
 import com.simple8583.util.EncodeUtil;
 import com.simple8583.util.encrypt.TripleDES;
 
+
 /**
- * Description: XmlFactory Author: joey Update: joey(2014-07-09 17:41)
+ * <p>报文组装抽象类.</p>
+ *
+ * @author Magic Joey
+ * @version IsoMsgFactory.java 1.0 Created@2014-07-09 17:41 $
  */
 public class IsoMsgFactory extends AbstractIsoMsgFactory{
 	
@@ -54,7 +58,7 @@ public class IsoMsgFactory extends AbstractIsoMsgFactory{
 			}
 		}
 		String original = accum.toString();
-		String val = TripleDES.getMac(bocMac, original);
+		String val = TripleDES.getMac(macKey, original);
 		return EncodeUtil.bcd(val);
 	}
 

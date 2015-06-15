@@ -6,6 +6,12 @@ import java.util.Random;
 
 import com.simple8583.util.EncodeUtil;
 
+/**
+ * <p>DES加密类</p>
+ *
+ * @author Magic Joey
+ * @version MacUtil.java 1.0 @2014-06-09 17:57$
+ */
 public class MacUtil {
 	public static String ZPK = "46FE4CA7D38564DF1A86B962BF2F0291";
 	public static String ZAK = "A1D610A2D9E00B5D5446E6F43E293719";

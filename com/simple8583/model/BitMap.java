@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.simple8583.util.EncodeUtil;
 
+/**
+ * <p>位图类.</p>
+ *
+ * @author Magic Joey
+ * @version BitMap.java 1.0 Created@2014-07-12 13:28 $
+ */
 public class BitMap {
 
 	private int[] bits = null;
