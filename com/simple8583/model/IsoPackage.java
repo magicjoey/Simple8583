@@ -1,5 +1,7 @@
 package com.simple8583.model;
 
+import com.simple8583.util.SimpleUtil;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -27,14 +29,14 @@ import java.util.List;
         return this;
     }
 
-    public String getMti() {
-        return mti;
-    }
+    //默认64位
+    private boolean bit64 = true;
 
-    public void setMti(String mti) {
-        this.mti = mti;
-    }
-    
+    /**
+     * 根据key获取报文域
+     * @param key
+     * @return
+     */
     public IsoField getIsoField(String key){
     	for(IsoField isoField:this){
     		if(isoField.getId().equalsIgnoreCase(key)){
@@ -42,6 +44,16 @@ import java.util.List;
     		}
     	}
     	return null;
+    }
+
+    /**
+     * 是否为Mac位
+     * @param key
+     * @return
+     */
+    public boolean isMacPos(String key){
+        return (this.isBit64()&&"64".equals(key))
+                ||(!this.isBit64()&&"128".equals(key));
     }
 
     /**
@@ -80,7 +92,23 @@ import java.util.List;
         }
         return isoPackage;
     }
-    
+
+    public String getMti() {
+        return mti;
+    }
+
+    public void setMti(String mti) {
+        this.mti = mti;
+    }
+
+    public boolean isBit64() {
+        return bit64;
+    }
+
+    public void setBit64(boolean bit64) {
+        this.bit64 = bit64;
+    }
+
     @Override
     public String toString(){
     	StringBuffer accum = new StringBuffer("[");

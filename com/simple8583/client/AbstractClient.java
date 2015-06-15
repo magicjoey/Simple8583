@@ -5,10 +5,10 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Map;
 
+import com.simple8583.exception.Simple8583Exception;
 import com.simple8583.factory.IsoMsgFactory;
 import com.simple8583.factory.XmlReader;
 import com.simple8583.model.IsoPackage;
-import com.simple8583.util.EncodeUtil;
 
 /**
  * <p>发送客户端抽象类.</p>
@@ -85,9 +85,9 @@ public abstract class AbstractClient {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			//抛出可能的异常，比如连接超时等
-			throw new RuntimeException(e);
+			throw new Simple8583Exception("网络通讯异常",e);
 		}
 		//将前面的MsgLength域剔除
 		pack.remove(0);

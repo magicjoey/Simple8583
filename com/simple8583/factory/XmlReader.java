@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import com.simple8583.exception.Simple8583Exception;
 import com.simple8583.model.IsoContainer;
 import com.simple8583.model.IsoField;
 import com.simple8583.model.IsoHeaderList;
@@ -40,21 +41,21 @@ public class XmlReader {
 
 	// 负责将配置文件解析缓存在
 	@SuppressWarnings("unchecked")
-	private void init(String path) throws JAXBException, IOException {
+	private void init(String path) throws IOException {
 		InputStream is = null;
 		try {
 			// 获取
 			is = ClassLoader.getSystemResourceAsStream(path);
 			if (is == null) {
-				throw new IllegalArgumentException("配置文件路径错误:" + path);
+				throw new Simple8583Exception("配置文件路径错误:" + path);
 			}
 			IsoContainer container = this.readConfigFromStream(
 					IsoContainer.class, is);
-			System.out.println(container.size());
+//			System.out.println(container.size());
 			is = ClassLoader.getSystemResourceAsStream(path);
 			IsoHeaderList headerList = readConfigFromStream(
 					IsoHeaderList.class, is);
-			System.out.println(headerList.size());
+//			System.out.println(headerList.size());
 			for (IsoPackage pack : container) {
 				// 将读取到的header信息插入前面
 				pack.addAll(0, (ArrayList<IsoField>) (headerList.clone()));
@@ -70,13 +71,13 @@ public class XmlReader {
 
 	@SuppressWarnings("unchecked")
 	private <T> T readConfigFromStream(Class<T> clazz,
-			final InputStream dataStream) throws JAXBException {
+			final InputStream dataStream) {
 		try {
 			JAXBContext jc = JAXBContext.newInstance(clazz);
 			Unmarshaller u = jc.createUnmarshaller();
 			return (T) u.unmarshal(dataStream);
 		} catch (JAXBException e) {
-			throw e;
+			throw new Simple8583Exception(e);
 		}
 	}
 

@@ -35,9 +35,7 @@ public abstract class AbstractIsoMsgFactory {
             throws IOException, ClassNotFoundException {
         //深度拷贝，对拷贝后的对象进行操作，
 		IsoPackage packClone = pack.deepClone();
-		
-		//判断BitMap的长度是否为128
-		boolean is128 = false;
+
 		List<Integer> dataFieldList = new ArrayList<Integer>(dataMap.size());
 		for (String key : dataMap.keySet()) {
 			IsoField field = packClone.getIsoField(key);
@@ -48,19 +46,21 @@ public abstract class AbstractIsoMsgFactory {
 			//数据域
 			if (SimpleUtil.isNumeric(key)) {
 				int val = Integer.valueOf(key);
-				if(!is128&&val>64){
-					is128 = true;
-					dataFieldList.add(1);//将bitMap第一位置为1，表示这个数据域为128位长
+				if(packClone.isBit64()&&val>64){
+                    //设置位非64位图模式，即128模式
+                    packClone.setBit64(false);
+                    //将bitMap第一位置为1，表示这个数据域为128位长
+					dataFieldList.add(1);
 				}
 				dataFieldList.add(val);
 			}
 		}
 		// 生成BitMap
 		BitMap bitMap = null;
-		if(is128){	
-			bitMap = new BitMap(128);
+		if(packClone.isBit64()){
+            bitMap = new BitMap(64);
 		}else{
-			bitMap = new BitMap(64);
+            bitMap = new BitMap(128);
 		}
 		byte[] bitMapByte = bitMap.addBits(dataFieldList);
 		//设置BitMap的值
@@ -76,7 +76,7 @@ public abstract class AbstractIsoMsgFactory {
      * @return
      * @throws Exception
      */
-	public Map<String, String> unpack(byte[] bts, IsoPackage pack)
+	public Map<String, String> unpack(byte[] bts,final IsoPackage pack)
 			throws Exception {
 		if (pack == null || pack.size() == 0) {
 			throw new IllegalArgumentException("配置为空，请检查IsoPackage是否为空");
@@ -166,7 +166,8 @@ public abstract class AbstractIsoMsgFactory {
 		ByteArrayOutputStream byteOutPut = new ByteArrayOutputStream(100);
 		for (IsoField field : isoPackage) {
 			if (field.isChecked()) {
-				if (field.getId().equals("64")) {
+                //Mac
+				if (isoPackage.isMacPos(field.getId())) {
 					try {
 						byteOutPut.write(mac(isoPackage));
 					} catch (Exception e) {
