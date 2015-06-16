@@ -104,5 +104,49 @@
         <field id="62" type="LLLVAR"/>
         <field id="64" type="BINARY" length="8" />
     </package>
+
+    <!--测试类型-->
+    <package mti="0420" ref="0430">
+        <field id="1" type="CHAR" length="4"/>
+        <field id="2" type="CHAR" length="6"/>
+        <field id="3" type="CHAR" length="8"/>
+        <field id="4" type="CHAR" length="15"/>
+        <field id="5" type="CHAR" length="2"/>
+        <field id="6" type="CHAR" length="19"/>
+        <field id="7" type="NUMERIC" length="12"/>
+        <field id="8" type="CHAR" length="20"/>
+        <field id="9" type="CHAR" length="3"/>
+        <field id="10" type="CHAR" length="20"/>
+        <field id="11" type="CHAR" length="6"/>
+        <field id="12" type="CHAR" length="10"/>
+        <field id="13" type="CHAR" length="70"/>
+        <field id="14" type="CHAR" length="3"/>
+        <field id="15" type="CHAR" length="20"/>
+        <field id="16" type="CHAR" length="22"/>
+        <field id="17" type="CHAR" length="15"/>
+        <field id="18" type="CHAR" length="32"/>
+    </package>
+
+
+    <!--测试类型 返回-->
+    <package mti="0430">
+        <field id="1" type="CHAR" length="4"/>
+        <field id="2" type="CHAR" length="6"/>
+        <field id="3" type="CHAR" length="8"/>
+        <field id="4" type="CHAR" length="15"/>
+        <field id="5" type="CHAR" length="2"/>
+        <field id="6" type="CHAR" length="19"/>
+        <field id="7" type="NUMERIC" length="12"/>
+        <field id="8" type="CHAR" length="20"/>
+        <field id="9" type="CHAR" length="6"/>
+        <field id="10" type="CHAR" length="8"/>
+        <field id="11" type="CHAR" length="8"/>
+        <field id="12" type="CHAR" length="11"/>
+        <field id="13" type="CHAR" length="20"/>
+        <field id="14" type="CHAR" length="3"/>
+        <field id="15" type="CHAR" length="2"/>
+        <field id="16" type="CHAR" length="25"/>
+        <field id="17" type="CHAR" length="32"/>
+    </package>
     
 </simple8583-config>
